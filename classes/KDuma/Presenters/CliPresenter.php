@@ -4,6 +4,10 @@
 namespace KDuma\Presenters;
 
 
+/**
+ * Class CliPresenter
+ * @package KDuma\Presenters
+ */
 class CliPresenter implements PresenterInterface
 {
     /**
@@ -21,6 +25,12 @@ class CliPresenter implements PresenterInterface
     }
 
 
+    /**
+     * @param $results
+     * @param $pary
+     * @param $list
+     * @param $max_len
+     */
     public function exec($results, $pary, $list, $max_len)
     {
         $output = [];

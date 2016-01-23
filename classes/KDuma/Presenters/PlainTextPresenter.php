@@ -4,8 +4,19 @@
 namespace KDuma\Presenters;
 
 
+/**
+ * Class PlainTextPresenter
+ * @package KDuma\Presenters
+ */
 class PlainTextPresenter implements PresenterInterface
 {
+    /**
+     * @param $results
+     * @param $pary
+     * @param $list
+     * @param $max_len
+     * @return string
+     */
     public function exec($results, $pary, $list, $max_len)
     {
         $output = [];

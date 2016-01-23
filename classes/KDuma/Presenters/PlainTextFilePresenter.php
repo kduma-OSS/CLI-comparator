@@ -8,6 +8,10 @@ namespace KDuma\Presenters;
  * Class PlainTextFilePresenter
  * @package KDuma\Presenters
  */
+/**
+ * Class PlainTextFilePresenter
+ * @package KDuma\Presenters
+ */
 class PlainTextFilePresenter extends PlainTextPresenter
 {
     /**

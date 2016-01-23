@@ -4,6 +4,10 @@
 namespace KDuma\Presenters;
 
 
+/**
+ * Class CliToFilePresenter
+ * @package KDuma\Presenters
+ */
 class CliToFilePresenter extends CliPresenter
 {
     /**
@@ -23,6 +27,14 @@ class CliToFilePresenter extends CliPresenter
     }
 
 
+    /**
+     * @param $results
+     * @param $pary
+     * @param $list
+     * @param $max_len
+     * @return string
+     * @throws \Exception
+     */
     public function exec($results, $pary, $list, $max_len)
     {
         $this->climate->output->defaultTo('buffer');

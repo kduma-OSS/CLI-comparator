@@ -4,15 +4,37 @@ namespace KDuma;
 use KDuma\Presenters\PresenterInterface;
 use StringCompare;
 
+/**
+ * Class Comparator
+ * @package KDuma
+ */
 class Comparator
 {
+    /**
+     * @var null
+     */
     protected $path = null;
+    /**
+     * @var null
+     */
     protected $file = null;
+    /**
+     * @var null
+     */
     protected $compare_to = null;
 
+    /**
+     * @var null
+     */
     protected $max_len = null;
 
-    function exec(PresenterInterface $presenter){
+    /**
+     * @param PresenterInterface $presenter
+     * @return mixed
+     * @throws \Exception
+     */
+    function exec(PresenterInterface $presenter)
+    {
         $list = $this->getList();
         $pairs = $this->getPairs($list);
         $results = $this->getResults($pairs, $list);
@@ -33,12 +55,12 @@ class Comparator
      */
     public function setPath($path)
     {
-        if(is_null($path))
+        if (is_null($path))
             $this->path = null;
         else
             $this->path = substr($path, -1) == DIRECTORY_SEPARATOR
                 ? $path
-                : $path.DIRECTORY_SEPARATOR;;
+                : $path . DIRECTORY_SEPARATOR;;
     }
 
     /**
@@ -54,12 +76,12 @@ class Comparator
      */
     public function setFile($file)
     {
-        if(is_null($file))
+        if (is_null($file))
             $this->file = null;
         else
             $this->file = substr($file, 0, 1) == DIRECTORY_SEPARATOR
                 ? $file
-                : DIRECTORY_SEPARATOR.$file;
+                : DIRECTORY_SEPARATOR . $file;
     }
 
     /**
@@ -81,12 +103,12 @@ class Comparator
             return !is_null($path);
         });
         $list = array_filter($list, function ($path) {
-            if(is_null($this->file)){
+            if (is_null($this->file)) {
                 return file_exists($this->path . $path);
             } else {
                 $file_exists = file_exists($this->path . $path . $this->file);
-                if(!$file_exists)
-                    throw new \Exception('file '.$path . $this->file.' doesn\'t exists!');
+                if (!$file_exists)
+                    throw new \Exception('file ' . $path . $this->file . ' doesn\'t exists!');
                 return $file_exists;
             }
         });
@@ -99,7 +121,7 @@ class Comparator
      */
     public function setCompareTo($compare_to)
     {
-        if(is_null($compare_to))
+        if (is_null($compare_to))
             $this->compare_to = null;
         else {
             $found = array_search($compare_to, $this->getList());
@@ -125,9 +147,9 @@ class Comparator
                 if ($key_a == $key_b)
                     continue;
 
-                if(!is_null($this->compare_to)){
+                if (!is_null($this->compare_to)) {
 
-                    if($key_a != $this->compare_to)
+                    if ($key_a != $this->compare_to)
                         continue;
                 }
 
@@ -143,35 +165,35 @@ class Comparator
      * @param $pary
      * @param $list
      * @return array
+     * @throws \Exception
      */
     protected function getResults($pary, $list)
     {
         $results = [];
 
         foreach ($pary as $key => $value) {
-            if(is_null($this->file)){
+            if (is_null($this->file)) {
 
                 $a = file_get_contents($this->path . $list[$value[0]]);
-                if(strlen(trim($a)) == 0)
-                    throw new \Exception('File '.$list[$value[0]].' is empty!');
+                if (strlen(trim($a)) == 0)
+                    throw new \Exception('File ' . $list[$value[0]] . ' is empty!');
 
                 $b = file_get_contents($this->path . $list[$value[1]]);
-                if(strlen(trim($b)) == 0)
-                    throw new \Exception('File '.$list[$value[1]].' is empty!');
+                if (strlen(trim($b)) == 0)
+                    throw new \Exception('File ' . $list[$value[1]] . ' is empty!');
             } else {
                 $a = file_get_contents($this->path . $list[$value[0]] . $this->file);
-                if(strlen(trim($a)) == 0)
-                    throw new \Exception('File '.$list[$value[0]] . $this->file.' is empty!');
+                if (strlen(trim($a)) == 0)
+                    throw new \Exception('File ' . $list[$value[0]] . $this->file . ' is empty!');
 
                 $b = file_get_contents($this->path . $list[$value[1]] . $this->file);
-                if(strlen(trim($b)) == 0)
-                    throw new \Exception('File '.$list[$value[1]] . $this->file.' is empty!');
+                if (strlen(trim($b)) == 0)
+                    throw new \Exception('File ' . $list[$value[1]] . $this->file . ' is empty!');
             }
 
             $phpStringCompare = new StringCompare($a, $b);
             $simlarity = $phpStringCompare->getSimilarityPercentage();
             $difference = $phpStringCompare->getDifferencePercentage();
-
 
 
             $results[$simlarity][$key] = [
