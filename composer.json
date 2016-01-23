@@ -7,6 +7,7 @@
             "email": "git@kduma.tk"
         }
     ],
+    "license": "GPL-3.0",
     "require": {
         "league/climate": "^3.2"
     },

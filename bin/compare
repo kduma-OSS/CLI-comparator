@@ -24,7 +24,7 @@ $climate->arguments->add([
     'format' => [
         'prefix'       => 'f',
         'longPrefix'   => 'format',
-        'description'  => 'Output format',
+        'description'  => 'Output format (text or cli)',
         'default'      => 'text'
     ],
 
