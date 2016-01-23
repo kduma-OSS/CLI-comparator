@@ -9,7 +9,7 @@ Batch compare multiple files
 # Setup
 Run bellow command to globally install Comparator:
 
-    composer global require phpunit/phpunit
+    composer global require kduma/comparator
     
 and add `~/.composer/vendor/bin/` directory to your PATH in your ~/.bash_profile (or ~/.bashrc):
 	
