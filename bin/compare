@@ -40,7 +40,7 @@ $climate->arguments->add([
         'prefix'       => 'f',
         'longPrefix'   => 'format',
         'description'  => 'Output format (text or cli)',
-        'default'      => 'text'
+        'defaultValue' => 'text'
     ],
 
     'output' => [
