@@ -1,0 +1,24 @@
+{
+    "name": "kduma/comparator",
+    "description": "Batch compare multiple files",
+    "authors": [
+        {
+            "name": "Krystian Duma",
+            "email": "git@kduma.tk"
+        }
+    ],
+    "require": {
+        "league/climate": "^3.2"
+    },
+    "autoload": {
+        "classmap": [
+            "classes/"
+        ]
+    },
+    "bin": [
+        "bin/compare"
+    ],
+    "config": {
+        "bin-dir": "./"
+    }
+}

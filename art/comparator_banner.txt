@@ -1,0 +1,11 @@
+<blue> _  ______  </blue><green>                       </green><red>    __</red><blue>  ____ </blue><green>                                       _             </green>
+<blue>| |/ /  _ \ </blue><green> _   _ _ __ ___   __ _ </green><red>   / /</red><blue> / ___|</blue><green>  ___  _ __ ___  _ __   __ _ _ __ __ _| |_ ___  _ __ </green>
+<blue>| ' /| | | |</blue><green>| | | | '_ ` _ \ / _` |</green><red>  / / </red><blue>| |    </blue><green> / _ \| '_ ` _ \| '_ \ / _` | '__/ _` | __/ _ \| '__|</green>
+<blue>| . \| |_| |</blue><green>| |_| | | | | | | (_| |</green><red> / /  </red><blue>| |___ </blue><green>| (_) | | | | | | |_) | (_| | | | (_| | || (_) | |   </green><dim><blink> _____ </blink></dim>
+<blue>|_|\_\____/ </blue><green> \__,_|_| |_| |_|\__,_|</green><red>/_/   </red><blue> \____|</blue><green> \___/|_| |_| |_| .__/ \__,_|_|  \__,_|\__\___/|_|   </green><dim><blink>|_____|</blink></dim>
+<blue>            </blue><green>                       </green><red>      </red><blue>       </blue><green>                |_|                                  </green>
+                                            <magenta><bold>  _        ___  </bold></magenta>
+                                            <magenta><bold> / |      / _ \ </bold></magenta>
+                                            <magenta><bold> | |     | | | |</bold></magenta>
+                                            <magenta><bold> | |  _  | |_| |</bold></magenta>
+                                            <magenta><bold> |_| (_)  \___/ </bold></magenta>

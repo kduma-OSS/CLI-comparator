@@ -1,0 +1,98 @@
+#! /usr/bin/env php
+<?php
+use KDuma\Comparator;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$climate = new League\CLImate\CLImate;
+$climate->addArt(__DIR__ . '/../art');
+
+$climate->arguments->add([
+    'help' => [
+        'prefix'      => 'h',
+        'longPrefix'  => 'help',
+        'description' => 'Prints a usage statement',
+        'noValue'     => true,
+    ],
+
+    'compare_to' => [
+        'prefix'       => 'c',
+        'longPrefix'   => 'compare',
+        'description'  => 'Compare to',
+    ],
+
+    'format' => [
+        'prefix'       => 'f',
+        'longPrefix'   => 'format',
+        'description'  => 'Output format',
+        'default'      => 'text'
+    ],
+
+    'output' => [
+        'prefix'       => 'o',
+        'longPrefix'   => 'output',
+        'description'  => 'Output file for text format',
+    ],
+
+    'path' => [
+        'description' => 'The path with files to compare.',
+        'required'    => true,
+        'castTo'      => 'string',
+    ],
+
+    'file' => [
+        'description' => 'If defined, compares specified file in subfolder.',
+        'castTo'      => 'string',
+    ],
+]);
+
+$climate->description('KDuma Comparator 1.0 - Batch compare multiple files');
+
+try {
+    $climate->arguments->parse();
+
+    if($climate->arguments->get('help')){
+        $climate->usage();
+    } else {
+        $comparator = new Comparator();
+        $comparator->setPath($climate->arguments->get('path'));
+        $comparator->setFile($climate->arguments->get('file'));
+        $comparator->setCompareTo($climate->arguments->get('compare_to'));
+
+        switch($climate->arguments->get('format')){
+            case 'text':
+                if(!$climate->arguments->get('output'))
+                    $presenter = new \KDuma\Presenters\PlainTextPresenter();
+                else
+                    $presenter = new \KDuma\Presenters\PlainTextFilePresenter($climate->arguments->get('output'));
+                break;
+
+            case 'cli':
+                if(!$climate->arguments->get('output'))
+                    $presenter = new \KDuma\Presenters\CliPresenter($climate);
+                else
+                    $presenter = new \KDuma\Presenters\CliToFilePresenter($climate, $climate->arguments->get('output'));
+                break;
+
+            default:
+                throw new Exception('Specified format ('.$climate->arguments->get('format').') doesn\'t exists!');
+        }
+
+        $output = $comparator->exec(
+            $presenter
+        );
+
+        if(!is_null($output))
+            $climate->write($output);
+    }
+
+} catch (Exception $e) {
+    $climate->draw('comparator_banner');
+    if(!$climate->arguments->get('help')) {
+        $climate->br(2);
+        $climate->error($e->getMessage());
+        $climate->br(2);
+    }
+    $climate->usage();
+}
+
