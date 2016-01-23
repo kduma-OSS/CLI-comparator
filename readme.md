@@ -11,7 +11,7 @@ Run bellow command to globally install Comparator:
 
     composer global require kduma/comparator
     
-and add `~/.composer/vendor/bin/` directory to your PATH in your ~/.bash_profile (or ~/.bashrc):
+and add `~/.composer/vendor/bin/` directory to your PATH in your ``~/.bash_profile` (or ``~/.bashrc`):
 	
 	export PATH=~/.composer/vendor/bin:$PATH
 

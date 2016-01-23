@@ -2,7 +2,22 @@
 <?php
 use KDuma\Comparator;
 
-require __DIR__ . '/../vendor/autoload.php';
+foreach (array(__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
+    if (file_exists($file)) {
+        define('COMPARATOR_COMPOSER_INSTALL', $file);
+        break;
+    }
+}
+
+if (!defined('COMPARATOR_COMPOSER_INSTALL')) {
+    fwrite(STDERR,
+        'You need to set up the project dependencies using the following commands:' . PHP_EOL .
+        'composer install' . PHP_EOL
+    );
+    die(1);
+}
+
+require COMPARATOR_COMPOSER_INSTALL;
 
 $climate = new League\CLImate\CLImate;
 $climate->addArt(__DIR__ . '/../art');
