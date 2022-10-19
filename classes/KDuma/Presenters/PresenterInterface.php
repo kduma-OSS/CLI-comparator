@@ -10,12 +10,5 @@ namespace KDuma\Presenters;
  */
 interface PresenterInterface
 {
-    /**
-     * @param $results
-     * @param $pairs
-     * @param $list
-     * @param $max_len
-     * @return mixed
-     */
-    public function exec($results, $pairs, $list, $max_len);
+    public function exec(array $results, array $pairs, array $list, int $max_len):mixed;
 }
