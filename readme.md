@@ -6,6 +6,10 @@
 
 Batch compare multiple files
 
+Check full documentation here: [opensource.duma.sh/apps/deprecated/comparator](https://opensource.duma.sh/apps/deprecated/comparator)
+
+**Notice: As of september 2025, this app is considered depracated. Please find a suitable replacement.**
+
 # Setup
 Run bellow command to globally install Comparator:
 
